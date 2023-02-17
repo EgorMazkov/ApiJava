@@ -19,14 +19,14 @@ public class CustomerProject extends BaseEntity {
     private String nameProject;
 
     @ToString.Exclude
-    @OneToMany( cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonManagedReference
+    @OneToMany( cascade = CascadeType.ALL, fetch = FetchType.LAZY)// todo использование каскадных правил плохая практика
+    @JsonManagedReference// todo не нужно
     @JoinColumn(name = "id_project")
     private Set<CustomerAttribute> customerAttributes;
 
     @ToString.Exclude
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)// todo использование каскадных правил плохая практика
+    @JsonManagedReference// todo не нужно
     @JoinColumn(name = "id_project")
     private Set<CustomerGeometry> customerGeometries;
 }

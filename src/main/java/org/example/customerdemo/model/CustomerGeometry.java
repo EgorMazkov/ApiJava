@@ -11,14 +11,14 @@ import lombok.ToString;
 @Table(name = "Geometry", schema = "project")
 @Getter
 @Setter
-@ToString
+@ToString// todo n + 1
 @NoArgsConstructor
 public class CustomerGeometry extends BaseEntity{
 
     @Column(name = "name_Geomerty")
     private String name;
 
-    @JsonBackReference
+    @JsonBackReference// todo не нужно
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_project")
     private CustomerProject customerProject;

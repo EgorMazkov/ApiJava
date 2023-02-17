@@ -12,39 +12,39 @@ import java.io.IOException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/projects/")
-public class RestCustomerContorllerV1 {
+@RequestMapping("/api/projects/")// todo "/" в конце лучше удалить и распихать в начало всех методов, так красивее
+public class RestCustomerContorllerV1 {// todo название ProjectController
 
-    @Autowired
+    @Autowired//todo инжект на поле плохая практика, сделай final или поставь @Autowired над конструктором
     public CustomerService customerService;
 
-    @RequestMapping(value = "{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "{id}", method = RequestMethod.GET)// todo тут как хочешь, но @GetMapping лаконичнее
     public ResponseEntity<CustomerProject> getCustomer(@PathVariable("id") Long id) {
-        System.out.println("POST request GET {id} - " + id);
-        if (id == null) {
+        System.out.println("POST request GET {id} - " + id);// todo логирование через System.out.println не очень, используй @Slf4j и его logger (log.info())
+        if (id == null) {// todo в этот if никогда не провалится
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         CustomerProject customerProject = customerService.getbyId(id);
-
+//todo к чему этот пропуск строки?
         if (customerProject == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);// todo лучше сделать через бросание exception при отсутствии customerProject на уровне CustomerService и ловить такие исключения в @AdviceController или просто использовать Optional
         }
-
+//todo к чему этот пропуск строки?
         return new ResponseEntity<>(customerProject, HttpStatus.OK);
     }
 
     @RequestMapping(value = "{name}", method = RequestMethod.POST)
     public ResponseEntity<CustomerProject> saveCustomer(@PathVariable("name") String name) {
-
+//todo к чему этот пропуск строки?
         if (name == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-
+//todo к чему этот пропуск строки?
         CreateCustomer createCustomer = new CreateCustomer();
         CustomerProject project = createCustomer.createProject(name);
         customerService.save(project);
-
-
+//todo к чему этот пропуск строки?
+//todo к чему этот пропуск строки?
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -53,7 +53,7 @@ public class RestCustomerContorllerV1 {
         if (id == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-
+//todo к чему этот пропуск строки?
         CustomerProject customerProject = customerService.getbyId(id);
         CreateCustomer createCustomer = new CreateCustomer();
         try {
@@ -61,13 +61,13 @@ public class RestCustomerContorllerV1 {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
+//todo к чему этот пропуск строки?
         if (customerProject == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-
+//todo к чему этот пропуск строки?
         this.customerService.save(customerProject);
-
+//todo к чему этот пропуск строки?
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -77,18 +77,18 @@ public class RestCustomerContorllerV1 {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         this.customerService.delete(id);
-
+//todo к чему этот пропуск строки?
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ResponseEntity<List<CustomerProject>> getAll() {
-        List<CustomerProject> customerProjects = this.customerService.getAll();
-
+        List<CustomerProject> customerProjects = this.customerService.getAll();// todo this не нужен
+//todo к чему этот пропуск строки?
         if (customerProjects == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-
+//todo к чему этот пропуск строки?
         return new ResponseEntity<>(customerProjects, HttpStatus.OK);
     }
 }

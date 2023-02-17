@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Slf4j
+@Slf4j// todo не используется
 @Service
 @RequiredArgsConstructor
 public class CustomerServiceImpl implements CustomerService {
@@ -21,11 +21,13 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    // todo @Transactional
     public void save(CustomerProject customerProject) {
         customerRepository.save(customerProject);
     }
 
     @Override
+    // todo @Transactional
     public void delete(Long id) {
         customerRepository.deleteById(id);
     }
