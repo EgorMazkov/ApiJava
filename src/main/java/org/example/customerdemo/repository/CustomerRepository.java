@@ -5,13 +5,16 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+
 public interface CustomerRepository extends JpaRepository<CustomerProject, Long> {
+    // todo ключевые слова лучше делать капсом DONE
+    // todo джойн нескольких коллекций влияет на производительность, лучше сдлеать поиск одной из коллекций другим запросом DONE
+    // todo Aboba??? findById DONE
+    // TODO почему то при выполнение findByIdCustomerAttribute возвращается и customerGeometry ?
 
-
-    @Query(value = "select distinct cp from CustomerProject cp" +// todo ключевые слова лучше делать капсом
-            " left join fetch cp.customerAttributes " +
-            "left join fetch cp.customerGeometries " +// todo джойн нескольких коллекций влияет на производительность, лучше сдлеать поиск одной из коллекций другим запросом
-            "where cp.id = :id")
-    CustomerProject findAbobaById(@Param("id") Long id);// todo Aboba??? findById
+    @Query(value = "SELECT DISTINCT customerProject from CustomerProject customerProject " +
+            "LEFT JOIN FETCH customerProject.customerAttributes " +
+            "WHERE customerProject.id = :id")
+    CustomerProject findByIdCustomerAttribute(@Param("id") Long id);
 
 }

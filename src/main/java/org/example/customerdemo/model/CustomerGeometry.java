@@ -1,7 +1,7 @@
 package org.example.customerdemo.model;
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,14 +11,16 @@ import lombok.ToString;
 @Table(name = "Geometry", schema = "project")
 @Getter
 @Setter
-@ToString// todo n + 1
+// todo n + 1 DONE
 @NoArgsConstructor
 public class CustomerGeometry extends BaseEntity{
 
     @Column(name = "name_Geomerty")
     private String name;
 
-    @JsonBackReference// todo не нужно
+    // todo не нужно DONE delete JsonBackReference
+    @ToString.Exclude
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_project")
     private CustomerProject customerProject;

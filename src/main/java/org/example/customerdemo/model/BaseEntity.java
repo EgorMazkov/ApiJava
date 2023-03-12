@@ -14,6 +14,6 @@ import javax.persistence.*;
 public class BaseEntity {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)// todo делай почаще реформат кода Ctrl + Alt + L
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)// todo делай почаще реформат кода Ctrl + Alt + L DONE
+    protected Long id;
 }

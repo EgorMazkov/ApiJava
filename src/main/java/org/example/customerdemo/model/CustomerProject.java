@@ -1,6 +1,5 @@
 package org.example.customerdemo.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -19,14 +18,15 @@ public class CustomerProject extends BaseEntity {
     private String nameProject;
 
     @ToString.Exclude
-    @OneToMany( cascade = CascadeType.ALL, fetch = FetchType.LAZY)// todo использование каскадных правил плохая практика
-    @JsonManagedReference// todo не нужно
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)// todo использование каскадных правил плохая практика = временный DONE
+    // todo не нужно DONE delete JsonBackReference
     @JoinColumn(name = "id_project")
     private Set<CustomerAttribute> customerAttributes;
 
     @ToString.Exclude
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)// todo использование каскадных правил плохая практика
-    @JsonManagedReference// todo не нужно
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)// todo использование каскадных правил плохая практика = временный DONE
+    // todo не нужно DONE delete JsonBackReference
     @JoinColumn(name = "id_project")
     private Set<CustomerGeometry> customerGeometries;
+
 }
